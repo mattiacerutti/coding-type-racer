@@ -14,6 +14,8 @@ import Python from "tree-sitter-python";
 // @ts-expect-error tree-sitter packages have no types
 import Lua from "tree-sitter-lua";
 import R from "@davisvaughan/tree-sitter-r";
+// @ts-expect-error tree-sitter packages have no types
+import Go from "tree-sitter-go";
 import {convertLanguage} from "tree-sitter-compat";
 
 export function getTSParser(languageId: string): Parser {
@@ -46,6 +48,8 @@ function getLanguage(languageId: string) {
       return Lua;
     case "r":
       return R;
+    case "go":
+      return Go;
     default:
       throw new Error(`Language ${languageId} not supported.`);
   }
