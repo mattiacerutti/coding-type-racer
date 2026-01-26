@@ -61,6 +61,7 @@ jobs:
       - name: Seed database
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GITHUB_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
         run: npx prisma db seed
 
   build-and-push:
