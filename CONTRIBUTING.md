@@ -4,15 +4,14 @@ Thanks for wanting to help make Code Typer better. This is a small project, so e
 
 ## Requirements
 
-- **Node 22**
-- **npm**. Yarn/pnpm are great, but please stick to npm so lockfiles stay in sync.
+- **Bun 1.3.6**
 - **GitHub API token** to run the snippet seeding scripts
 - **Docker** (optional)
 
 ## Setup
 
 1. Fork the repo and clone your fork.
-2. Install dependencies: `npm install`.
+2. Install dependencies: `bun install`.
 3. Copy `.env.example` to `.env`
 
    ```bash
@@ -26,18 +25,18 @@ Thanks for wanting to help make Code Typer better. This is a small project, so e
    - **Local install:** make sure the credentials (either `DATABASE_URL` or `POSTGRES_*`) match your running server.
 5. Sync Prisma with the database:
    ```bash
-   npx prisma db push   # creates tables
-   npx prisma db seed   # seeds languages, files and snippets
+   bunx prisma db push   # creates tables
+   bunx prisma db seed   # seeds languages, files and snippets
    ```
    Note that this process is expected to take a while (~10 minutes).
-6. Run the dev server using `npm run dev`.
+6. Run the dev server using `bun run dev`.
 
 ## Pull request checklist
 
 - Create a branch off `main` with a descriptive name (`feature/auto-closing-tweak`, `fix/language-picker`, etc.).
 - Keep changes scoped. Smaller PRs get reviewed faster.
 - Update docs when behavior changes (README, this file, inline comments).
-- Run `npm run lint`, `npm run prettier`, and `npm run build` locally.
+- Run `bun run lint`, `bun run prettier`, and `bun run build` locally.
 - Include screenshots or screen recordings if you touch UI/UX. A quick Loom/GIF helps reviewers verify the behavior without pulling the branch immediately.
 - Push your branch and open a PR against `main`. Describe the problem, your solution, and any follow-up work you’re leaving for later.
 

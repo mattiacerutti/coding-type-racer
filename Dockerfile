@@ -1,17 +1,17 @@
-FROM node:22-bullseye
+FROM oven/bun:1.3.6
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json bun.lock ./
 COPY prisma ./prisma/
 
-RUN npm ci
+RUN bun install --frozen-lockfile
 
 # Copy the rest of the source code
 COPY . .
 
-RUN npm run build
+RUN bun run build
 
 EXPOSE 3000
 
-CMD ["npm", "run", "start"]
+CMD ["bun", "run", "start"]
