@@ -2,8 +2,9 @@
   "name": "code-typer",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "bun@1.3.6",
   "engines": {
-    "node": "22.11.0"
+    "bun": "1.3.6"
   },
   "scripts": {
     "dev": "next dev",
@@ -72,5 +73,18 @@
   "overrides": {
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2"
-  }
+  },
+  "trustedDependencies": [
+    "@davisvaughan/tree-sitter-r",
+    "tree-sitter-c",
+    "tree-sitter-c-sharp",
+    "tree-sitter-compat",
+    "tree-sitter-cpp",
+    "tree-sitter-go",
+    "tree-sitter-java",
+    "tree-sitter-javascript",
+    "tree-sitter-lua",
+    "tree-sitter-python",
+    "unrs-resolver"
+  ]
 }
