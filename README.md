@@ -1,6 +1,12 @@
-# Code Typer ⌨️
+<div align="center">
+<img width="200" height="200" src="https://github.com/user-attachments/assets/aace751e-e56c-496c-b510-f9bec13719e4" />
+</div>
 
-A typing game **built for programmers.** Practice typing *real code*, not lorem ipsum.
+<h1 align="center">Code Typer</h1>
+
+<div align="center">
+  A typing game <b>built for programmers.</b> Practice typing <i>real code</i>, not lorem ipsum.
+</div>
 <br>
 
 
