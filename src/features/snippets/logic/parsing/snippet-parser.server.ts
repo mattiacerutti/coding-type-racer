@@ -20,7 +20,26 @@ export function extractAutoCompleteDisabledRanges(fileContent: string, languageI
     const current = queue.pop();
     if (!current) continue;
 
-    if (current.type === "string" || current.type === "string_literal" || current.type === "comment") {
+    // Rust has distinct comment/lifetime nodes and literals with variable prefixes, so their ranges need separate handling.
+    if (languageId === "rust") {
+      if (current.type === "line_comment" || current.type === "block_comment" || current.type === "lifetime" || current.type === "loop_label") {
+        ranges.push({
+          startIndex: current.startIndex,
+          endIndex: current.endIndex - 1,
+        });
+      } else if (current.type === "string_literal" || current.type === "raw_string_literal" || current.type === "char_literal") {
+        const delimiter = current.type === "char_literal" ? "'" : '"';
+        const actualStartIndex = current.startIndex + current.text.indexOf(delimiter) + 1;
+        const actualEndIndex = current.startIndex + current.text.lastIndexOf(delimiter) - 1;
+
+        if (actualStartIndex <= actualEndIndex) {
+          ranges.push({
+            startIndex: actualStartIndex,
+            endIndex: actualEndIndex,
+          });
+        }
+      }
+    } else if (current.type === "string" || current.type === "string_literal" || current.type === "comment") {
       if (current.type === "comment") {
         ranges.push({
           startIndex: current.startIndex,

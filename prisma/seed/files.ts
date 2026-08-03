@@ -1,5 +1,5 @@
 import {ILanguage} from "@/features/shared/types/language";
-import {PrismaClient} from "@prisma/client";
+import {Prisma, PrismaClient} from "@prisma/client";
 import {callGitHubApi} from "@lib/github";
 import {SUPPORTED_LANGUAGES} from "./languages";
 
@@ -62,13 +62,23 @@ async function seedFilesForLanguage(prisma: PrismaClient, languageId: string) {
   const files = await getFilesForLanguage(language);
 
   for (const file of files) {
-    const insertedFile = await prisma.file.create({
-      data: {
-        repository: file.repository,
-        path: file.path,
-        languageId: language.id,
-      },
-    });
+    const insertedFile = await prisma.file
+      .create({
+        data: {
+          repository: file.repository,
+          path: file.path,
+          languageId: language.id,
+        },
+      })
+      .catch((error) => {
+        if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+          console.warn(`Skipping duplicate file: ${file.repository}/${file.path}`);
+          return null;
+        }
+        throw error;
+      });
+
+    if (!insertedFile) continue;
 
     await prisma.fileVersion.create({
       data: {
