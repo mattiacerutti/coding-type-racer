@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
     "tree-sitter-javascript",
     "tree-sitter-typescript/typescript",
     "tree-sitter-go",
+    "tree-sitter-rust",
     "tree-sitter-c",
     "tree-sitter-cpp",
     "tree-sitter-c-sharp",

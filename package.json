@@ -52,6 +52,7 @@
     "tree-sitter-python": "0.20.0",
     "tree-sitter-typescript": "0.23.2",
     "tree-sitter-go": "^0.20.0",
+    "tree-sitter-rust": "0.20.4",
     "zod": "^4.1.12",
     "zustand": "^5.0.8"
   },
